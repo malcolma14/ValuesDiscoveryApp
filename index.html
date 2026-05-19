@@ -815,7 +815,7 @@ function renderImages() {
     tile.className = 'img-tile';
     tile.dataset.imgIndex = n;
     tile.innerHTML =
-      '<img src="' + n + '.jpg" alt="" loading="lazy" />' +
+      '<img src="public/images/' + n + '.jpg" alt="" loading="lazy" />' +
       '<div class="img-overlay"></div>' +
       '<div class="img-badge"></div>' +
       '<div class="img-check"></div>';
@@ -967,7 +967,7 @@ function buildSummary() {
 
   const siEl = document.getElementById('summary-images');
   siEl.innerHTML = selImages.map(n =>
-    '<img class="summary-img" src="' + n + '.jpg" alt="" />'
+    '<img class="summary-img" src="public/images/' + n + '.jpg" alt="" />'
   ).join('');
 
   function noteEl(id, targetId) {
