@@ -319,6 +319,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
       display: block;
       pointer-events: none;
     }
@@ -467,9 +468,10 @@
       margin-bottom: 10px;
     }
     .summary-img {
-      width: 120px;
-      height: 80px;
+      width: 160px;
+      height: 107px;
       object-fit: cover;
+      object-position: center;
       border-radius: 6px;
       border: 2px solid var(--navy);
     }
@@ -726,17 +728,15 @@ const IMAGE_COUNT = 18;
 let clientName = '';
 let currentScreen = 'welcome';
 
-// Shuffled display order (indices into original arrays)
 let shuffledValues = [];
 let shuffledMoney = [];
 let shuffledPhilanthropy = [];
 let shuffledImages = [];
 
-// Selections stored as original values/indices
-let selValues = [];      // up to 3 strings
-let selMoney = [];       // up to 2 strings
-let selPhilanthropy = [];// up to 1 string
-let selImages = [];      // up to 3 original img indices (1-based)
+let selValues = [];
+let selMoney = [];
+let selPhilanthropy = [];
+let selImages = [];
 
 // ── Fisher-Yates shuffle ──────────────────────────────────────────────
 function shuffle(arr) {
@@ -788,7 +788,7 @@ function renderMoney() {
     const el = document.createElement('div');
     el.className = 'card';
     el.dataset.value = msg;
-    el.innerHTML = '<span class="quote-mark">“</span>' + escapeHtml(msg);
+    el.innerHTML = '<span class="quote-mark">"</span>' + escapeHtml(msg);
     grid.appendChild(el);
   });
 }
@@ -801,7 +801,7 @@ function renderPhilanthropy() {
     const el = document.createElement('div');
     el.className = 'card';
     el.dataset.value = principle;
-    el.innerHTML = '<span class="quote-mark">“</span>' + escapeHtml(principle);
+    el.innerHTML = '<span class="quote-mark">"</span>' + escapeHtml(principle);
     grid.appendChild(el);
   });
 }
@@ -947,35 +947,29 @@ document.getElementById('btn-restart').addEventListener('click', () => {
 
 // ── Summary builder ───────────────────────────────────────────────────
 function buildSummary() {
-  // Title
   document.getElementById('summary-title').innerHTML =
     escapeHtml(clientName) + '\'s Conversation <em>at a Glance</em>';
 
-  // Values chips
   const svEl = document.getElementById('summary-values');
   svEl.innerHTML = selValues.map(v =>
     '<span class="summary-chip">' + escapeHtml(v) + '</span>'
   ).join('');
 
-  // Money messages
   const smEl = document.getElementById('summary-money');
   smEl.innerHTML = selMoney.map(m =>
     '<div class="summary-card-item">' + escapeHtml(m) + '</div>'
   ).join('');
 
-  // Philanthropy
   const spEl = document.getElementById('summary-philanthropy');
   spEl.innerHTML = selPhilanthropy.map(p =>
     '<div class="summary-card-item">' + escapeHtml(p) + '</div>'
   ).join('');
 
-  // Images
   const siEl = document.getElementById('summary-images');
   siEl.innerHTML = selImages.map(n =>
     '<img class="summary-img" src="' + n + '.jpg" alt="" />'
   ).join('');
 
-  // Notes
   function noteEl(id, targetId) {
     const val = document.getElementById(id).value.trim();
     const el = document.getElementById(targetId);
