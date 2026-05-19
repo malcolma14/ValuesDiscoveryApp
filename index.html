@@ -815,7 +815,7 @@ function renderImages() {
     tile.className = 'img-tile';
     tile.dataset.imgIndex = n;
     tile.innerHTML =
-      '<img src="public/images/img-' + String(n).padStart(2,'0') + '.jpg" alt="" loading="lazy" />' +
+      '<img src="' + n + '.jpg" alt="" loading="lazy" />' +
       '<div class="img-overlay"></div>' +
       '<div class="img-badge"></div>' +
       '<div class="img-check"></div>';
@@ -972,7 +972,7 @@ function buildSummary() {
   // Images
   const siEl = document.getElementById('summary-images');
   siEl.innerHTML = selImages.map(n =>
-    '<img class="summary-img" src="public/images/img-' + String(n).padStart(2,'0') + '.jpg" alt="" />'
+    '<img class="summary-img" src="' + n + '.jpg" alt="" />'
   ).join('');
 
   // Notes
