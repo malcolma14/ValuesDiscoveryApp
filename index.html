@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Values Discovery Conversation — Strategic Generosity</title>
+  <title>Values Discovery — Strategic Generosity</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -24,7 +24,6 @@
 
     /* ── Reset ─────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
     body {
       font-family: 'DM Sans', sans-serif;
       font-weight: 400;
@@ -57,36 +56,29 @@
       white-space: nowrap;
     }
     #topbar .brand span { font-style: italic; font-weight: 400; }
-    #progress-dots {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
+    #progress-dots { display: flex; gap: 10px; align-items: center; }
     .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
+      width: 10px; height: 10px; border-radius: 50%;
       background: #3a4a72;
       transition: background var(--transition), transform var(--transition);
     }
     .dot.done   { background: var(--lb); }
     .dot.active { background: var(--white); transform: scale(1.35); }
-    #client-name-display {
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: #8fa4cc;
-      white-space: nowrap;
+    #name-display {
+      font-size: 0.85rem; font-weight: 300; color: #8fa4cc; white-space: nowrap;
     }
 
     /* ── Screens ───────────────────────────────────────────────────── */
-    .screen { display: none; flex-direction: column; flex: 1; }
+    .screen { display: none; flex-direction: column; }
     .screen.active { display: flex; }
 
     /* ── Welcome ───────────────────────────────────────────────────── */
     #screen-welcome {
+      flex: 1;
       align-items: center;
       justify-content: center;
       padding: 40px 24px;
+      min-height: calc(100vh - 56px);
     }
     .welcome-card {
       background: var(--white);
@@ -99,531 +91,321 @@
       text-align: center;
     }
     .welcome-card .eyebrow {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 14px;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 14px;
     }
     .welcome-card h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--navy);
-      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;
+      line-height: 1.2; color: var(--navy); margin-bottom: 10px;
     }
     .welcome-card h1 em { font-style: italic; font-weight: 400; }
     .welcome-card .sub {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin-bottom: 32px;
-      line-height: 1.6;
+      font-size: 0.95rem; color: var(--muted); margin-bottom: 32px; line-height: 1.6;
     }
     .welcome-card label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-      text-align: left;
+      display: block; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 8px; text-align: left;
     }
     .welcome-card input[type="text"] {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      color: var(--ink);
-      background: var(--cream);
-      transition: border-color var(--transition);
-      outline: none;
-      margin-bottom: 24px;
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem; color: var(--ink);
+      background: var(--cream); transition: border-color var(--transition);
+      outline: none; margin-bottom: 24px;
     }
     .welcome-card input[type="text"]:focus { border-color: var(--blue); }
     .welcome-card input[type="text"]::placeholder { color: #bbb; }
 
     /* ── Buttons ───────────────────────────────────────────────────── */
     .btn-primary {
-      background: var(--navy);
-      color: var(--white);
-      border: none;
-      border-radius: 8px;
-      padding: 14px 32px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background var(--transition), opacity var(--transition);
+      background: var(--navy); color: var(--white); border: none; border-radius: 8px;
+      padding: 14px 32px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+      font-weight: 500; cursor: pointer; transition: background var(--transition), opacity var(--transition);
       width: 100%;
     }
     .btn-primary:hover:not(:disabled) { background: #002d8a; }
     .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
 
     .btn-secondary {
-      background: var(--white);
-      color: var(--navy);
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 28px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
+      background: var(--white); color: var(--navy);
+      border: 1.5px solid var(--border); border-radius: 8px;
+      padding: 12px 28px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 500; cursor: pointer;
       transition: border-color var(--transition), background var(--transition);
     }
     .btn-secondary:hover { border-color: var(--navy); background: #f0f4fc; }
 
     .btn-reflection {
-      background: #EBF6FD;
-      color: var(--navy);
-      border: 1.5px solid var(--lb);
-      border-radius: 8px;
-      padding: 10px 20px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
+      background: #EBF6FD; color: var(--navy); border: 1.5px solid var(--lb);
+      border-radius: 8px; padding: 10px 20px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem; font-weight: 500; cursor: pointer; white-space: nowrap;
       transition: background var(--transition), border-color var(--transition);
-      white-space: nowrap;
     }
     .btn-reflection:hover { background: #d8eef9; border-color: var(--blue); }
 
+    .btn-back {
+      background: none; border: none; font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem; color: var(--muted); cursor: pointer;
+      padding: 8px 4px; transition: color var(--transition);
+    }
+    .btn-back:hover { color: var(--navy); }
+
     /* ── Module layout ─────────────────────────────────────────────── */
     .module-header {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
+      background: var(--white); border-bottom: 1px solid var(--border);
       padding: 28px 40px 24px;
     }
     .module-header .step-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 6px;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 6px;
     }
     .module-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 4px;
+      font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 4px;
     }
     .module-header h2 em { font-style: italic; }
-    .module-header .instruction {
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
+    .module-header .instruction { font-size: 0.88rem; color: var(--muted); }
     .module-header .instruction strong { color: var(--ink); font-weight: 500; }
 
-    .module-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 28px 40px;
-    }
+    .module-body { padding: 28px 40px; }
 
     .module-footer {
-      background: var(--white);
-      border-top: 1px solid var(--border);
-      padding: 16px 40px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      background: var(--white); border-top: 1px solid var(--border);
+      padding: 16px 40px; display: flex; align-items: center; gap: 12px;
     }
-    .module-footer .btn-primary { width: auto; min-width: 140px; }
+    .footer-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+    .footer-right .btn-primary { width: auto; min-width: 140px; }
 
     /* ── Reflection panels ─────────────────────────────────────────── */
     .reflection-panel {
-      background: #F0F6FC;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 24px 40px;
-      display: none;
+      background: #F0F6FC; border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border); padding: 24px 40px; display: none;
     }
     .reflection-panel.open { display: block; }
     .reflection-label {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 6px;
-      margin-top: 18px;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 6px; margin-top: 18px;
     }
     .reflection-label:first-child { margin-top: 0; }
     .reflection-textarea {
-      width: 100%;
-      min-height: 72px;
-      max-height: 200px;
-      padding: 10px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      color: var(--ink);
-      resize: vertical;
-      outline: none;
-      transition: border-color var(--transition);
-      background: white;
+      width: 100%; min-height: 72px; max-height: 200px; padding: 10px 14px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.875rem; color: var(--ink);
+      resize: vertical; outline: none; transition: border-color var(--transition); background: white;
     }
     .reflection-textarea:focus { border-color: var(--blue); }
-    .reflection-deeper {
-      margin-top: 24px;
-      padding-top: 18px;
-      border-top: 1px dashed var(--border);
-    }
+    .reflection-deeper { margin-top: 24px; padding-top: 18px; border-top: 1px dashed var(--border); }
     .reflection-deeper-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-style: italic;
-      margin-bottom: 14px;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); font-style: italic; margin-bottom: 14px;
     }
-    .reflection-img-row {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      margin-top: 18px;
-    }
+    .reflection-img-row { display: flex; gap: 16px; align-items: flex-start; margin-top: 18px; }
     .reflection-img-row:first-child { margin-top: 0; }
     .reflection-img-thumb {
-      width: 140px;
-      flex-shrink: 0;
-      aspect-ratio: 3/2;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 6px;
-      border: 2px solid var(--navy);
+      width: 140px; flex-shrink: 0; aspect-ratio: 3/2;
+      object-fit: cover; object-position: center;
+      border-radius: 6px; border: 2px solid var(--navy);
     }
     .reflection-img-row .reflection-textarea { flex: 1; }
 
     /* ── Values grid (module 1) ────────────────────────────────────── */
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-    }
+    .values-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
     .chip {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 50px;
-      padding: 10px 16px;
-      font-size: 0.875rem;
-      font-weight: 400;
-      color: var(--ink);
-      cursor: pointer;
-      text-align: center;
-      transition: border-color var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition), opacity var(--transition);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      user-select: none;
+      background: var(--white); border: 1.5px solid var(--border); border-radius: 50px;
+      padding: 10px 14px; font-size: 0.875rem; font-weight: 400; color: var(--ink);
+      cursor: pointer; text-align: center; display: flex; align-items: center; justify-content: center;
+      transition: border-color var(--transition), background var(--transition),
+                  color var(--transition), box-shadow var(--transition), opacity var(--transition);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05); user-select: none;
     }
     .chip:hover:not(.disabled) {
-      border-color: var(--blue);
-      box-shadow: 0 2px 8px rgba(0,114,206,0.15);
+      border-color: var(--blue); box-shadow: 0 2px 8px rgba(0,114,206,0.15);
     }
     .chip.selected {
-      background: var(--navy);
-      border-color: var(--navy);
-      color: var(--white);
+      background: var(--navy); border-color: var(--navy); color: var(--white);
       box-shadow: 0 2px 10px rgba(0,30,96,0.2);
     }
     .chip.disabled { opacity: 0.28; cursor: not-allowed; }
+    .chip-rank {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px; min-width: 20px;
+      background: var(--lb); color: var(--navy); border-radius: 50%;
+      font-size: 0.68rem; font-weight: 700; margin-right: 7px; flex-shrink: 0; line-height: 1;
+    }
 
     /* ── Cards grid (modules 2 & 3) ────────────────────────────────── */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
+    .cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .cards-grid.three-col { grid-template-columns: repeat(3, 1fr); }
-
     .card {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 18px;
-      cursor: pointer;
-      transition: border-color var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition), opacity var(--transition);
+      background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 20px 18px; cursor: pointer; font-size: 0.9rem; line-height: 1.5; color: var(--ink);
+      user-select: none; position: relative;
+      transition: border-color var(--transition), background var(--transition),
+                  color var(--transition), box-shadow var(--transition), opacity var(--transition);
       box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: var(--ink);
-      user-select: none;
-      position: relative;
     }
-    .card:hover:not(.disabled) {
-      border-color: var(--blue);
-      box-shadow: 0 3px 12px rgba(0,114,206,0.15);
-    }
-    .card.selected {
-      background: var(--navy);
-      border-color: var(--navy);
-      color: var(--white);
-      box-shadow: 0 3px 14px rgba(0,30,96,0.22);
-    }
+    .card:hover:not(.disabled) { border-color: var(--blue); box-shadow: 0 3px 12px rgba(0,114,206,0.15); }
+    .card.selected { background: var(--navy); border-color: var(--navy); color: var(--white); box-shadow: 0 3px 14px rgba(0,30,96,0.22); }
     .card.disabled { opacity: 0.28; cursor: not-allowed; }
     .card .quote-mark {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      line-height: 1;
-      color: var(--lb);
-      display: block;
-      margin-bottom: 6px;
+      font-family: 'Playfair Display', serif; font-size: 2rem; line-height: 1;
+      color: var(--lb); display: block; margin-bottom: 6px;
     }
     .card.selected .quote-mark { color: #8DD0EF; }
 
     /* ── Image grid (module 4) ─────────────────────────────────────── */
-    .images-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-    }
+    .images-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
     .img-tile {
-      position: relative;
-      aspect-ratio: 3/2;
-      border-radius: var(--radius);
-      overflow: hidden;
-      cursor: pointer;
-      border: 2.5px solid transparent;
+      position: relative; aspect-ratio: 3/2; border-radius: var(--radius); overflow: hidden;
+      cursor: pointer; border: 2.5px solid transparent;
       transition: border-color var(--transition), box-shadow var(--transition), opacity var(--transition);
       box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
     .img-tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      pointer-events: none;
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+      display: block; pointer-events: none;
     }
-    .img-tile:hover:not(.disabled) {
-      border-color: var(--blue);
-      box-shadow: 0 3px 14px rgba(0,114,206,0.25);
-    }
+    .img-tile:hover:not(.disabled) { border-color: var(--blue); box-shadow: 0 3px 14px rgba(0,114,206,0.25); }
     .img-tile.selected { border-color: var(--navy); }
     .img-tile.disabled { opacity: 0.28; cursor: not-allowed; }
     .img-badge {
-      position: absolute;
-      top: 7px;
-      left: 7px;
-      width: 26px;
-      height: 26px;
-      background: var(--navy);
-      color: var(--white);
-      border-radius: 50%;
-      font-size: 0.75rem;
-      font-weight: 500;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      position: absolute; top: 7px; left: 7px; width: 26px; height: 26px;
+      background: var(--navy); color: var(--white); border-radius: 50%;
+      font-size: 0.75rem; font-weight: 500; display: none;
+      align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
     .img-tile.selected .img-badge { display: flex; }
     .img-check {
-      position: absolute;
-      bottom: 7px;
-      right: 7px;
-      width: 22px;
-      height: 22px;
-      background: var(--navy);
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
+      position: absolute; bottom: 7px; right: 7px; width: 22px; height: 22px;
+      background: var(--navy); border-radius: 50%; display: none;
+      align-items: center; justify-content: center;
     }
     .img-check::after {
-      content: '';
-      display: block;
-      width: 6px;
-      height: 10px;
-      border: 2px solid white;
-      border-top: none;
-      border-left: none;
+      content: ''; display: block; width: 6px; height: 10px;
+      border: 2px solid white; border-top: none; border-left: none;
       transform: rotate(45deg) translate(-1px, -1px);
     }
     .img-tile.selected .img-check { display: flex; }
     .img-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,30,96,0.22);
-      opacity: 0;
+      position: absolute; inset: 0; background: rgba(0,30,96,0.22); opacity: 0;
       transition: opacity var(--transition);
     }
     .img-tile.selected .img-overlay { opacity: 1; }
 
     /* ── Summary screen ────────────────────────────────────────────── */
-    #screen-summary {
-      padding: 0;
-    }
-    .summary-header {
-      background: var(--navy);
-      color: var(--white);
-      padding: 40px 48px 36px;
-    }
+    #screen-summary { padding: 0; }
+    .summary-header { background: var(--navy); color: var(--white); padding: 40px 48px 36px; }
     .summary-header .eyebrow {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--lb);
-      margin-bottom: 8px;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--lb); margin-bottom: 8px;
     }
-    .summary-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.9rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
+    .summary-header h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; margin-bottom: 4px; }
     .summary-header h2 em { font-style: italic; font-weight: 400; }
-    .summary-header .summary-sub {
-      font-size: 0.9rem;
-      color: #8fa4cc;
-    }
-    .summary-body {
-      padding: 36px 48px;
-      max-width: 860px;
-    }
-    .summary-section {
-      margin-bottom: 36px;
-    }
+    .summary-header .summary-sub { font-size: 0.9rem; color: #8fa4cc; }
+    .summary-body { padding: 36px 48px; max-width: 860px; }
+    .summary-section { margin-bottom: 36px; }
     .summary-section h3 {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
     }
-    .summary-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
+    .summary-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
     .summary-chip {
-      background: var(--navy);
-      color: var(--white);
-      border-radius: 50px;
-      padding: 6px 16px;
-      font-size: 0.875rem;
+      background: var(--navy); color: var(--white); border-radius: 50px;
+      padding: 6px 16px; font-size: 0.875rem; display: flex; align-items: center; gap: 7px;
     }
-    .summary-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 10px;
+    .summary-chip-rank {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; background: var(--lb); color: var(--navy);
+      border-radius: 50%; font-size: 0.65rem; font-weight: 700; flex-shrink: 0;
     }
+    .summary-cards { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
     .summary-card-item {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 16px;
-      font-size: 0.9rem;
-      color: var(--ink);
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
+      background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px 16px; font-size: 0.9rem; color: var(--ink);
+      display: flex; align-items: flex-start; gap: 10px;
     }
     .summary-card-item::before {
-      content: '"';
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--lb);
-      line-height: 1;
-      flex-shrink: 0;
+      content: '"'; font-family: 'Playfair Display', serif; font-size: 1.4rem;
+      color: var(--lb); line-height: 1; flex-shrink: 0;
     }
-    .summary-images {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-    }
+    .summary-images { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
     .summary-img {
-      width: 160px;
-      height: 107px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 6px;
-      border: 2px solid var(--navy);
+      width: 160px; height: 107px; object-fit: cover; object-position: center;
+      border-radius: 6px; border: 2px solid var(--navy);
     }
-
-    /* ── Summary reflections ───────────────────────────────────────── */
     .summary-reflection { margin-top: 14px; }
     .summary-reflection-q {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
-      margin-top: 12px;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px; margin-top: 12px;
     }
     .summary-reflection-q:first-child { margin-top: 0; }
     .summary-reflection-a {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 0.875rem;
-      color: var(--ink);
-      line-height: 1.6;
-      white-space: pre-wrap;
+      background: white; border: 1px solid var(--border); border-radius: 8px;
+      padding: 10px 14px; font-size: 0.875rem; color: var(--ink); line-height: 1.6; white-space: pre-wrap;
     }
-    .summary-reflection-img-row {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      margin-top: 12px;
-    }
+    .summary-reflection-img-row { display: flex; gap: 14px; align-items: flex-start; margin-top: 12px; }
     .summary-reflection-img-row:first-child { margin-top: 0; }
     .summary-reflection-img {
-      width: 120px;
-      flex-shrink: 0;
-      aspect-ratio: 3/2;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 6px;
-      border: 2px solid var(--navy);
+      width: 120px; flex-shrink: 0; aspect-ratio: 3/2; object-fit: cover; object-position: center;
+      border-radius: 6px; border: 2px solid var(--navy);
     }
-
     .summary-actions {
-      padding: 0 48px 32px;
-      display: flex;
-      gap: 12px;
+      padding: 0 48px 32px; display: flex; align-items: center; gap: 12px;
     }
+    .summary-actions-right { margin-left: auto; display: flex; gap: 12px; }
 
-    /* ── Booking section ───────────────────────────────────────────── */
-    .booking-section {
-      padding: 32px 48px 48px;
-      border-top: 1px solid var(--border);
+    /* ── Booking footer link ───────────────────────────────────────── */
+    .booking-footer {
+      padding: 0 48px 48px; border-top: 1px solid var(--border); padding-top: 24px;
     }
-    .booking-section p {
-      font-size: 0.95rem;
-      color: var(--ink);
-      margin-bottom: 16px;
+    .booking-footer-link {
+      font-size: 0.875rem; color: var(--blue); text-decoration: none;
     }
-    .booking-actions { display: flex; gap: 12px; }
-    .booking-link p { margin-bottom: 14px; }
+    .booking-footer-link:hover { text-decoration: underline; }
 
     /* ── Selection counter ─────────────────────────────────────────── */
-    .sel-counter {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
+    .sel-counter { font-size: 0.8rem; color: var(--muted); margin-bottom: 16px; }
     .sel-counter strong { color: var(--navy); }
+
+    /* ── Booking modal ─────────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,15,50,0.65); z-index: 200;
+      display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--white); border-radius: 16px;
+      width: 100%; max-width: 700px; height: 88vh; max-height: 700px;
+      display: flex; flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0,30,96,0.28); overflow: hidden;
+    }
+    .modal-header { padding: 28px 32px 20px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .modal-header .modal-eyebrow {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 6px;
+    }
+    .modal-header h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 6px;
+    }
+    .modal-header p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
+    .modal-iframe-wrap { flex: 1; overflow: hidden; }
+    .modal-iframe-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .modal-footer {
+      padding: 14px 32px; border-top: 1px solid var(--border);
+      display: flex; justify-content: flex-end; flex-shrink: 0;
+    }
+    .modal-skip {
+      background: none; border: none; font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem; color: var(--muted); cursor: pointer;
+      text-decoration: underline; padding: 6px 0;
+      transition: color var(--transition);
+    }
+    .modal-skip:hover { color: var(--ink); }
 
     /* ── Print ─────────────────────────────────────────────────────── */
     @media print {
-      #topbar, .summary-actions, .booking-section { display: none !important; }
+      #topbar, .summary-actions, .booking-footer, .modal-overlay { display: none !important; }
       body { background: white; }
       .summary-header { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .screen { display: flex !important; }
@@ -632,21 +414,20 @@
     }
 
     /* ── Responsive ────────────────────────────────────────────────── */
-    @media (max-width: 1100px) {
-      .values-grid { grid-template-columns: repeat(5, 1fr); }
-    }
+    @media (max-width: 1100px) { .values-grid { grid-template-columns: repeat(5, 1fr); } }
     @media (max-width: 900px) {
       .values-grid { grid-template-columns: repeat(4, 1fr); }
       .cards-grid { grid-template-columns: repeat(3, 1fr); }
       .images-grid { grid-template-columns: repeat(4, 1fr); }
     }
     @media (max-width: 700px) {
-      .module-header, .module-body, .module-footer { padding-left: 20px; padding-right: 20px; }
+      .module-header, .module-body, .module-footer,
       .reflection-panel { padding-left: 20px; padding-right: 20px; }
       .values-grid { grid-template-columns: repeat(3, 1fr); }
       .cards-grid { grid-template-columns: repeat(2, 1fr); }
       .images-grid { grid-template-columns: repeat(3, 1fr); }
-      .summary-header, .summary-body, .summary-actions, .booking-section { padding-left: 20px; padding-right: 20px; }
+      .summary-header, .summary-body, .summary-actions, .booking-footer { padding-left: 20px; padding-right: 20px; }
+      .modal-box { height: 95vh; }
     }
   </style>
 </head>
@@ -661,18 +442,18 @@
     <div class="dot" data-step="3"></div>
     <div class="dot" data-step="4"></div>
   </div>
-  <div id="client-name-display"></div>
+  <div id="name-display"></div>
 </div>
 
 <!-- ── Welcome ─────────────────────────────────────────────────────── -->
 <div id="screen-welcome" class="screen active">
   <div class="welcome-card">
-    <div class="eyebrow">Values Discovery Conversation</div>
+    <div class="eyebrow">Values Discovery</div>
     <h1>Let's talk about what <em>matters most.</em></h1>
-    <p class="sub">Before we discuss numbers, let's understand what drives your decisions. This conversation takes about 20 minutes.</p>
-    <label for="client-name-input">Client's first name</label>
-    <input type="text" id="client-name-input" placeholder="e.g. Sarah" autocomplete="off" />
-    <button class="btn-primary" id="btn-start" disabled>Begin Conversation</button>
+    <p class="sub">Take about 20 minutes to explore your values, money beliefs, and legacy — and discover what matters most to you.</p>
+    <label for="name-input">Your first name</label>
+    <input type="text" id="name-input" placeholder="e.g. Sarah" autocomplete="off" />
+    <button class="btn-primary" id="btn-start" disabled>Get Started</button>
   </div>
 </div>
 
@@ -681,7 +462,7 @@
   <div class="module-header">
     <div class="step-label">Module 1 of 4 — Motivational Values</div>
     <h2>What drives you <em>forward?</em></h2>
-    <p class="instruction">Ask the client to call out their choices. <strong>Choose 3.</strong></p>
+    <p class="instruction">Choose your top 3 — <strong>in order of importance.</strong> Click once for #1, again to deselect.</p>
   </div>
   <div class="module-body">
     <div class="sel-counter">Selected: <strong id="m1-count">0</strong> / 3</div>
@@ -701,8 +482,11 @@
     </div>
   </div>
   <div class="module-footer">
-    <button class="btn-reflection" id="btn-reflect-1">Add Reflection +</button>
-    <button class="btn-primary" id="btn-next-1" disabled>Continue</button>
+    <button class="btn-back" id="btn-back-1">← Back</button>
+    <div class="footer-right">
+      <button class="btn-reflection" id="btn-reflect-1">Add Reflection +</button>
+      <button class="btn-primary" id="btn-next-1" disabled>Continue</button>
+    </div>
   </div>
 </div>
 
@@ -711,21 +495,24 @@
   <div class="module-header">
     <div class="step-label">Module 2 of 4 — Money Messages</div>
     <h2>What did you hear growing up <em>about money?</em></h2>
-    <p class="instruction">Ask the client which messages feel most familiar. <strong>Choose 2.</strong></p>
+    <p class="instruction">Choose the 2 messages that feel most familiar to you.</p>
   </div>
   <div class="module-body">
     <div class="sel-counter">Selected: <strong id="m2-count">0</strong> / 2</div>
     <div class="cards-grid" id="grid-money"></div>
   </div>
   <div class="reflection-panel" id="reflection-2">
-    <div class="reflection-label">Where/when did you first hear this money message, and what role has it played in your life?</div>
+    <div class="reflection-label">Where or when did you first hear this money message, and what role has it played in your life?</div>
     <textarea class="reflection-textarea" id="ref-2-origin" placeholder="Share your thoughts…"></textarea>
-    <div class="reflection-label">What money message would you like to live your life <em>now?</em></div>
+    <div class="reflection-label">What money message would you like to live by <em>now?</em></div>
     <textarea class="reflection-textarea" id="ref-2-now" placeholder="Share your thoughts…"></textarea>
   </div>
   <div class="module-footer">
-    <button class="btn-reflection" id="btn-reflect-2">Add Reflection +</button>
-    <button class="btn-primary" id="btn-next-2" disabled>Continue</button>
+    <button class="btn-back" id="btn-back-2">← Back</button>
+    <div class="footer-right">
+      <button class="btn-reflection" id="btn-reflect-2">Add Reflection +</button>
+      <button class="btn-primary" id="btn-next-2" disabled>Continue</button>
+    </div>
   </div>
 </div>
 
@@ -734,7 +521,7 @@
   <div class="module-header">
     <div class="step-label">Module 3 of 4 — Principles of Philanthropy</div>
     <h2>How do you think about <em>giving?</em></h2>
-    <p class="instruction">Ask the client which principle resonates most. <strong>Choose 1.</strong></p>
+    <p class="instruction">Choose the 1 principle that resonates most with you.</p>
   </div>
   <div class="module-body">
     <div class="sel-counter">Selected: <strong id="m3-count">0</strong> / 1</div>
@@ -747,8 +534,11 @@
     <textarea class="reflection-textarea" id="ref-3-extent" placeholder="Share your thoughts…"></textarea>
   </div>
   <div class="module-footer">
-    <button class="btn-reflection" id="btn-reflect-3">Add Reflection +</button>
-    <button class="btn-primary" id="btn-next-3" disabled>Continue</button>
+    <button class="btn-back" id="btn-back-3">← Back</button>
+    <div class="footer-right">
+      <button class="btn-reflection" id="btn-reflect-3">Add Reflection +</button>
+      <button class="btn-primary" id="btn-next-3" disabled>Continue</button>
+    </div>
   </div>
 </div>
 
@@ -757,7 +547,7 @@
   <div class="module-header">
     <div class="step-label">Module 4 of 4 — Picture Your Legacy</div>
     <h2>What does your <em>legacy</em> look like?</h2>
-    <p class="instruction">Ask the client to choose the images that speak to them. <strong>Choose 3.</strong> No need to explain — their instinct is enough.</p>
+    <p class="instruction">Choose 3 images that speak to you. <strong>Go with your instinct.</strong></p>
   </div>
   <div class="module-body">
     <div class="sel-counter">Selected: <strong id="m4-count">0</strong> / 3</div>
@@ -767,8 +557,11 @@
     <div id="reflection-4-images"></div>
   </div>
   <div class="module-footer">
-    <button class="btn-reflection" id="btn-reflect-4">Add Reflection +</button>
-    <button class="btn-primary" id="btn-next-4" disabled>View Summary</button>
+    <button class="btn-back" id="btn-back-4">← Back</button>
+    <div class="footer-right">
+      <button class="btn-reflection" id="btn-reflect-4">Add Reflection +</button>
+      <button class="btn-primary" id="btn-next-4" disabled>View Summary</button>
+    </div>
   </div>
 </div>
 
@@ -777,7 +570,7 @@
   <div class="summary-header">
     <div class="eyebrow">Values Discovery — Summary</div>
     <h2 id="summary-title">Your Conversation <em>at a Glance</em></h2>
-    <div class="summary-sub" id="summary-sub">Strategic Generosity · Adam Malcolm, CFP, MFA-P</div>
+    <div class="summary-sub">Strategic Generosity · Adam Malcolm, CFP, MFA-P</div>
   </div>
   <div class="summary-body">
     <div class="summary-section">
@@ -802,25 +595,33 @@
     </div>
   </div>
   <div class="summary-actions">
-    <button class="btn-primary" id="btn-print" style="width:auto;min-width:180px;">Print / Save as PDF</button>
-    <button class="btn-secondary" id="btn-restart">Start New Session</button>
-  </div>
-  <div class="booking-section" id="booking-section">
-    <div id="booking-prompt">
-      <p>Would you like to schedule a follow-up conversation?</p>
-      <div class="booking-actions">
-        <button class="btn-primary" id="btn-book-yes" style="width:auto;min-width:180px;">Yes — Book a Meeting</button>
-        <button class="btn-secondary" id="btn-book-no">No thanks</button>
-      </div>
+    <button class="btn-back" id="btn-back-summary">← Back</button>
+    <div class="summary-actions-right">
+      <button class="btn-primary" id="btn-print" style="width:auto;min-width:180px;">Print / Save as PDF</button>
+      <button class="btn-secondary" id="btn-restart">Start Over</button>
     </div>
-    <div id="booking-link" style="display:none;">
-      <p>Use the link below to find a time that works:</p>
-      <a href="https://outlook.office.com/book/AdamMalcolmConsultantIGWealthManagementOnlineBooking@igmfinancial.net/?ismsaljsauthenabled"
-         target="_blank" rel="noopener"
-         class="btn-primary"
-         style="display:inline-block;width:auto;min-width:220px;text-decoration:none;text-align:center;">
-        Schedule a Meeting →
-      </a>
+  </div>
+  <div class="booking-footer">
+    <a href="https://outlook.office.com/book/AdamMalcolmConsultantIGWealthManagementOnlineBooking@igmfinancial.net/?ismsaljsauthenabled"
+       target="_blank" rel="noopener" class="booking-footer-link">
+      Prefer to book directly? Schedule a meeting with Adam →
+    </a>
+  </div>
+</div>
+
+<!-- ── Booking Modal ────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="modal-booking">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-eyebrow">One more thing…</div>
+      <h3>Would you like to chat with Adam?</h3>
+      <p>Your results are a great starting point for a financial conversation. Book a free call below — or skip to save your PDF.</p>
+    </div>
+    <div class="modal-iframe-wrap">
+      <iframe src='https://outlook.office.com/book/AdamMalcolmConsultantIGWealthManagementOnlineBooking@igmfinancial.net/?ismsaljsauthenabled' width='100%' height='100%' scrolling='yes' style='border:0'></iframe>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-skip" id="btn-modal-skip">No thanks — just save my PDF</button>
     </div>
   </div>
 </div>
@@ -836,7 +637,6 @@ const VALUES = [
   'Responsiveness','Risk','Security','Self-reliance','Spirituality',
   'Sustainability','Tradition'
 ];
-
 const MONEY_MESSAGES = [
   'Time is money',
   'It\'s your responsibility to give back',
@@ -859,7 +659,6 @@ const MONEY_MESSAGES = [
   'Nobody will provide for you but you',
   'Other people aren\'t as lucky as us'
 ];
-
 const PHILANTHROPY = [
   'I\'ll give away a set percentage of my income annually',
   'I think of global issues and apply them locally',
@@ -876,17 +675,12 @@ const PHILANTHROPY = [
   'I want to scale and replicate great models that already work well',
   'I want to invest in outstanding non-profit leaders making change'
 ];
-
 const IMAGE_COUNT = 18;
 
 // ── State ─────────────────────────────────────────────────────────────
-let clientName = '';
+let userName = '';
 let currentScreen = 'welcome';
-
-let shuffledValues = [];
-let shuffledMoney = [];
-let shuffledPhilanthropy = [];
-let shuffledImages = [];
+let hasShownBooking = false;
 
 let selValues = [];
 let selMoney = [];
@@ -908,6 +702,7 @@ function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   currentScreen = id;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   updateDots();
 }
 
@@ -923,52 +718,40 @@ function updateDots() {
 
 // ── Render modules ────────────────────────────────────────────────────
 function renderValues() {
-  shuffledValues = shuffle(VALUES);
   const grid = document.getElementById('grid-values');
   grid.innerHTML = '';
-  shuffledValues.forEach(val => {
+  shuffle(VALUES).forEach(val => {
     const el = document.createElement('div');
-    el.className = 'chip';
-    el.dataset.value = val;
-    el.textContent = val;
+    el.className = 'chip'; el.dataset.value = val; el.textContent = val;
     grid.appendChild(el);
   });
 }
-
 function renderMoney() {
-  shuffledMoney = shuffle(MONEY_MESSAGES);
   const grid = document.getElementById('grid-money');
   grid.innerHTML = '';
-  shuffledMoney.forEach(msg => {
+  shuffle(MONEY_MESSAGES).forEach(msg => {
     const el = document.createElement('div');
-    el.className = 'card';
-    el.dataset.value = msg;
+    el.className = 'card'; el.dataset.value = msg;
     el.innerHTML = '<span class="quote-mark">"</span>' + escapeHtml(msg);
     grid.appendChild(el);
   });
 }
-
 function renderPhilanthropy() {
-  shuffledPhilanthropy = shuffle(PHILANTHROPY);
   const grid = document.getElementById('grid-philanthropy');
   grid.innerHTML = '';
-  shuffledPhilanthropy.forEach(principle => {
+  shuffle(PHILANTHROPY).forEach(p => {
     const el = document.createElement('div');
-    el.className = 'card';
-    el.dataset.value = principle;
-    el.innerHTML = '<span class="quote-mark">"</span>' + escapeHtml(principle);
+    el.className = 'card'; el.dataset.value = p;
+    el.innerHTML = '<span class="quote-mark">"</span>' + escapeHtml(p);
     grid.appendChild(el);
   });
 }
-
 function renderImages() {
-  shuffledImages = shuffle(Array.from({length: IMAGE_COUNT}, (_, i) => i + 1));
   const grid = document.getElementById('grid-images');
   grid.innerHTML = '';
-  shuffledImages.forEach(n => {
+  shuffle(Array.from({length: IMAGE_COUNT}, (_, i) => i + 1)).forEach(n => {
     const tile = document.createElement('div');
-    tile.className = 'img-tile';
-    tile.dataset.imgIndex = n;
+    tile.className = 'img-tile'; tile.dataset.imgIndex = n;
     tile.innerHTML =
       '<img src="public/images/' + n + '.jpg" alt="" loading="lazy" />' +
       '<div class="img-overlay"></div>' +
@@ -982,12 +765,25 @@ function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-// ── Reflection panel toggle ───────────────────────────────────────────
-function toggleReflection(moduleNum) {
-  const panel = document.getElementById('reflection-' + moduleNum);
-  const btn = document.getElementById('btn-reflect-' + moduleNum);
+// ── Reflection: toggle + auto-open with scroll ────────────────────────
+function toggleReflection(n) {
+  const panel = document.getElementById('reflection-' + n);
+  const btn = document.getElementById('btn-reflect-' + n);
   const open = panel.classList.toggle('open');
   btn.textContent = open ? 'Close Reflection −' : 'Add Reflection +';
+  if (open) {
+    requestAnimationFrame(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
+}
+
+function openReflectionAndScroll(n) {
+  const panel = document.getElementById('reflection-' + n);
+  const btn = document.getElementById('btn-reflect-' + n);
+  if (!panel.classList.contains('open')) {
+    panel.classList.add('open');
+    btn.textContent = 'Close Reflection −';
+  }
+  requestAnimationFrame(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }));
 }
 
 document.getElementById('btn-reflect-1').addEventListener('click', () => toggleReflection(1));
@@ -999,9 +795,7 @@ document.getElementById('btn-reflect-4').addEventListener('click', () => toggleR
 function renderReflectionImages() {
   const container = document.getElementById('reflection-4-images');
   const saved = {};
-  container.querySelectorAll('.reflection-textarea').forEach(ta => {
-    saved[ta.id] = ta.value;
-  });
+  container.querySelectorAll('.reflection-textarea').forEach(ta => { saved[ta.id] = ta.value; });
   container.innerHTML = '';
   if (selImages.length === 0) {
     container.innerHTML = '<p style="font-size:0.875rem;color:var(--muted);font-style:italic;">Select images above to add reflections.</p>';
@@ -1017,18 +811,33 @@ function renderReflectionImages() {
         '<textarea class="reflection-textarea" id="ref-4-img-' + n + '" placeholder="Share your thoughts…"></textarea>' +
       '</div>';
     container.appendChild(row);
-    if (saved['ref-4-img-' + n]) {
-      document.getElementById('ref-4-img-' + n).value = saved['ref-4-img-' + n];
-    }
+    if (saved['ref-4-img-' + n]) document.getElementById('ref-4-img-' + n).value = saved['ref-4-img-' + n];
   });
 }
 
-// ── Selection logic ───────────────────────────────────────────────────
+// ── Selection state helpers ───────────────────────────────────────────
+function applyValuesSelectionState() {
+  const grid = document.getElementById('grid-values');
+  const atLimit = selValues.length >= 3;
+  grid.querySelectorAll('.chip').forEach(el => {
+    const v = el.dataset.value;
+    const pos = selValues.indexOf(v);
+    const isSelected = pos !== -1;
+    el.classList.toggle('selected', isSelected);
+    el.classList.toggle('disabled', atLimit && !isSelected);
+    if (isSelected) {
+      el.innerHTML = '<span class="chip-rank">' + (pos + 1) + '</span>' + escapeHtml(v);
+    } else {
+      el.textContent = v;
+    }
+  });
+  document.getElementById('m1-count').textContent = selValues.length;
+}
+
 function applySelectionState(gridId, selections, limit, countId) {
   const grid = document.getElementById(gridId);
-  const items = grid.querySelectorAll('[data-value]');
   const atLimit = selections.length >= limit;
-  items.forEach(el => {
+  grid.querySelectorAll('[data-value]').forEach(el => {
     const v = el.dataset.value;
     const isSelected = selections.includes(v);
     el.classList.toggle('selected', isSelected);
@@ -1039,9 +848,8 @@ function applySelectionState(gridId, selections, limit, countId) {
 
 function applyImageSelectionState() {
   const grid = document.getElementById('grid-images');
-  const tiles = grid.querySelectorAll('.img-tile');
   const atLimit = selImages.length >= 3;
-  tiles.forEach(tile => {
+  grid.querySelectorAll('.img-tile').forEach(tile => {
     const n = parseInt(tile.dataset.imgIndex);
     const pos = selImages.indexOf(n);
     const isSelected = pos !== -1;
@@ -1058,65 +866,68 @@ document.getElementById('grid-values').addEventListener('click', e => {
   const chip = e.target.closest('.chip');
   if (!chip || chip.classList.contains('disabled')) return;
   const val = chip.dataset.value;
+  const wasAtLimit = selValues.length >= 3;
   const idx = selValues.indexOf(val);
   if (idx > -1) selValues.splice(idx, 1);
   else if (selValues.length < 3) selValues.push(val);
-  applySelectionState('grid-values', selValues, 3, 'm1-count');
+  applyValuesSelectionState();
   document.getElementById('btn-next-1').disabled = selValues.length < 3;
+  if (!wasAtLimit && selValues.length >= 3) openReflectionAndScroll(1);
 });
 
 document.getElementById('grid-money').addEventListener('click', e => {
   const card = e.target.closest('.card');
   if (!card || card.classList.contains('disabled')) return;
   const val = card.dataset.value;
+  const wasAtLimit = selMoney.length >= 2;
   const idx = selMoney.indexOf(val);
   if (idx > -1) selMoney.splice(idx, 1);
   else if (selMoney.length < 2) selMoney.push(val);
   applySelectionState('grid-money', selMoney, 2, 'm2-count');
   document.getElementById('btn-next-2').disabled = selMoney.length < 2;
+  if (!wasAtLimit && selMoney.length >= 2) openReflectionAndScroll(2);
 });
 
 document.getElementById('grid-philanthropy').addEventListener('click', e => {
   const card = e.target.closest('.card');
   if (!card || card.classList.contains('disabled')) return;
   const val = card.dataset.value;
+  const wasAtLimit = selPhilanthropy.length >= 1;
   const idx = selPhilanthropy.indexOf(val);
   if (idx > -1) selPhilanthropy.splice(idx, 1);
   else selPhilanthropy = [val];
   applySelectionState('grid-philanthropy', selPhilanthropy, 1, 'm3-count');
   document.getElementById('btn-next-3').disabled = selPhilanthropy.length < 1;
+  if (!wasAtLimit && selPhilanthropy.length >= 1) openReflectionAndScroll(3);
 });
 
 document.getElementById('grid-images').addEventListener('click', e => {
   const tile = e.target.closest('.img-tile');
   if (!tile || tile.classList.contains('disabled')) return;
   const n = parseInt(tile.dataset.imgIndex);
+  const wasAtLimit = selImages.length >= 3;
   const idx = selImages.indexOf(n);
   if (idx > -1) selImages.splice(idx, 1);
   else if (selImages.length < 3) selImages.push(n);
   applyImageSelectionState();
   document.getElementById('btn-next-4').disabled = selImages.length < 3;
+  if (!wasAtLimit && selImages.length >= 3) openReflectionAndScroll(4);
 });
 
-// ── Navigation buttons ────────────────────────────────────────────────
-document.getElementById('client-name-input').addEventListener('input', function() {
-  clientName = this.value.trim();
-  document.getElementById('btn-start').disabled = !clientName;
+// ── Navigation ────────────────────────────────────────────────────────
+document.getElementById('name-input').addEventListener('input', function() {
+  userName = this.value.trim();
+  document.getElementById('btn-start').disabled = !userName;
 });
-
-document.getElementById('client-name-input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && clientName) startSession();
+document.getElementById('name-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && userName) startSession();
 });
-
 document.getElementById('btn-start').addEventListener('click', startSession);
 
 function startSession() {
-  if (!clientName) return;
-  document.getElementById('client-name-display').textContent = clientName;
-  renderValues();
-  renderMoney();
-  renderPhilanthropy();
-  renderImages();
+  if (!userName) return;
+  document.getElementById('name-display').textContent = userName;
+  renderValues(); renderMoney(); renderPhilanthropy(); renderImages();
   showScreen('screen-1');
 }
 
@@ -1125,35 +936,42 @@ document.getElementById('btn-next-2').addEventListener('click', () => showScreen
 document.getElementById('btn-next-3').addEventListener('click', () => showScreen('screen-4'));
 document.getElementById('btn-next-4').addEventListener('click', buildSummary);
 
-document.getElementById('btn-print').addEventListener('click', () => window.print());
+document.getElementById('btn-back-1').addEventListener('click', () => showScreen('screen-welcome'));
+document.getElementById('btn-back-2').addEventListener('click', () => showScreen('screen-1'));
+document.getElementById('btn-back-3').addEventListener('click', () => showScreen('screen-2'));
+document.getElementById('btn-back-4').addEventListener('click', () => showScreen('screen-3'));
+document.getElementById('btn-back-summary').addEventListener('click', () => showScreen('screen-4'));
 
-document.getElementById('btn-book-yes').addEventListener('click', () => {
-  document.getElementById('booking-prompt').style.display = 'none';
-  document.getElementById('booking-link').style.display = '';
+// ── Print with booking modal ──────────────────────────────────────────
+document.getElementById('btn-print').addEventListener('click', () => {
+  if (!hasShownBooking) {
+    hasShownBooking = true;
+    document.getElementById('modal-booking').classList.add('open');
+  } else {
+    window.print();
+  }
 });
 
-document.getElementById('btn-book-no').addEventListener('click', () => {
-  document.getElementById('booking-section').style.display = 'none';
+document.getElementById('btn-modal-skip').addEventListener('click', () => {
+  document.getElementById('modal-booking').classList.remove('open');
+  window.print();
 });
 
+// ── Restart ───────────────────────────────────────────────────────────
 document.getElementById('btn-restart').addEventListener('click', () => {
-  clientName = '';
+  userName = ''; hasShownBooking = false;
   selValues = []; selMoney = []; selPhilanthropy = []; selImages = [];
-  document.getElementById('client-name-input').value = '';
+  document.getElementById('name-input').value = '';
   document.getElementById('btn-start').disabled = true;
-  document.getElementById('client-name-display').textContent = '';
+  document.getElementById('name-display').textContent = '';
   document.getElementById('btn-next-1').disabled = true;
   document.getElementById('btn-next-2').disabled = true;
   document.getElementById('btn-next-3').disabled = true;
   document.getElementById('btn-next-4').disabled = true;
-  // reset reflections
   document.querySelectorAll('.reflection-textarea').forEach(ta => ta.value = '');
   document.querySelectorAll('.reflection-panel').forEach(p => p.classList.remove('open'));
   document.querySelectorAll('[id^="btn-reflect-"]').forEach(b => b.textContent = 'Add Reflection +');
-  // reset booking section
-  document.getElementById('booking-section').style.display = '';
-  document.getElementById('booking-prompt').style.display = '';
-  document.getElementById('booking-link').style.display = 'none';
+  document.getElementById('modal-booking').classList.remove('open');
   showScreen('screen-welcome');
   document.querySelectorAll('.dot').forEach(d => d.classList.remove('done','active'));
 });
@@ -1161,76 +979,60 @@ document.getElementById('btn-restart').addEventListener('click', () => {
 // ── Summary builder ───────────────────────────────────────────────────
 function buildSummary() {
   document.getElementById('summary-title').innerHTML =
-    escapeHtml(clientName) + '\'s Conversation <em>at a Glance</em>';
+    escapeHtml(userName) + '\'s Conversation <em>at a Glance</em>';
 
-  // Values chips
-  const svEl = document.getElementById('summary-values');
-  svEl.innerHTML = selValues.map(v =>
-    '<span class="summary-chip">' + escapeHtml(v) + '</span>'
+  // Values — show with rank
+  document.getElementById('summary-values').innerHTML = selValues.map((v, i) =>
+    '<span class="summary-chip"><span class="summary-chip-rank">' + (i+1) + '</span>' + escapeHtml(v) + '</span>'
   ).join('');
 
-  // Money messages
-  const smEl = document.getElementById('summary-money');
-  smEl.innerHTML = selMoney.map(m =>
+  document.getElementById('summary-money').innerHTML = selMoney.map(m =>
     '<div class="summary-card-item">' + escapeHtml(m) + '</div>'
   ).join('');
 
-  // Philanthropy
-  const spEl = document.getElementById('summary-philanthropy');
-  spEl.innerHTML = selPhilanthropy.map(p =>
+  document.getElementById('summary-philanthropy').innerHTML = selPhilanthropy.map(p =>
     '<div class="summary-card-item">' + escapeHtml(p) + '</div>'
   ).join('');
 
-  // Legacy images
-  const siEl = document.getElementById('summary-images');
-  siEl.innerHTML = selImages.map(n =>
+  document.getElementById('summary-images').innerHTML = selImages.map(n =>
     '<img class="summary-img" src="public/images/' + n + '.jpg" alt="" />'
   ).join('');
 
-  // Reflection helper: renders Q+A pairs, skipping empty answers
   function renderReflectionBlock(targetId, pairs) {
     const el = document.getElementById(targetId);
-    const rows = pairs
+    el.innerHTML = pairs
       .filter(([, val]) => val.trim())
       .map(([q, val]) =>
         '<div class="summary-reflection-q">' + escapeHtml(q) + '</div>' +
         '<div class="summary-reflection-a">' + escapeHtml(val.trim()) + '</div>'
       ).join('');
-    el.innerHTML = rows;
   }
 
   renderReflectionBlock('summary-reflection-1', [
     ['What values did you choose and why?', document.getElementById('ref-1-why').value],
-    ['What life or family experiences led you to choose those values?', document.getElementById('ref-1-experiences').value],
+    ['What life or family experiences led you to those values?', document.getElementById('ref-1-experiences').value],
     ['Is there a time someone broke this value? How did you react?', document.getElementById('ref-1-broken').value],
     ['Does your wealth plan serve these values?', document.getElementById('ref-1-plan').value],
   ]);
-
   renderReflectionBlock('summary-reflection-2', [
     ['Where/when did you first hear this money message?', document.getElementById('ref-2-origin').value],
     ['What money message would you like to live by now?', document.getElementById('ref-2-now').value],
   ]);
-
   renderReflectionBlock('summary-reflection-3', [
     ['Why does this principle resonate with you?', document.getElementById('ref-3-why').value],
     ['To what extent do you live by it?', document.getElementById('ref-3-extent').value],
   ]);
 
-  // Module 4: image + answer rows
   const sr4 = document.getElementById('summary-reflection-4');
-  const imgRows = selImages
-    .map(n => {
-      const ta = document.getElementById('ref-4-img-' + n);
-      const val = ta ? ta.value.trim() : '';
-      if (!val) return '';
-      return '<div class="summary-reflection-img-row">' +
-        '<img class="summary-reflection-img" src="public/images/' + n + '.jpg" alt="" />' +
-        '<div class="summary-reflection-a" style="flex:1">' + escapeHtml(val) + '</div>' +
-        '</div>';
-    })
-    .filter(Boolean)
-    .join('');
-  sr4.innerHTML = imgRows;
+  sr4.innerHTML = selImages.map(n => {
+    const ta = document.getElementById('ref-4-img-' + n);
+    const val = ta ? ta.value.trim() : '';
+    if (!val) return '';
+    return '<div class="summary-reflection-img-row">' +
+      '<img class="summary-reflection-img" src="public/images/' + n + '.jpg" alt="" />' +
+      '<div class="summary-reflection-a" style="flex:1">' + escapeHtml(val) + '</div>' +
+      '</div>';
+  }).filter(Boolean).join('');
 
   showScreen('screen-summary');
 }
