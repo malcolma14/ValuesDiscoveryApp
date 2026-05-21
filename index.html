@@ -354,15 +354,6 @@
     }
     .summary-actions-right { margin-left: auto; display: flex; gap: 12px; }
 
-    /* ── Booking footer link ───────────────────────────────────────── */
-    .booking-footer {
-      padding: 0 48px 48px; border-top: 1px solid var(--border); padding-top: 24px;
-    }
-    .booking-footer-link {
-      font-size: 0.875rem; color: var(--blue); text-decoration: none;
-    }
-    .booking-footer-link:hover { text-decoration: underline; }
-
     /* ── Selection counter ─────────────────────────────────────────── */
     .sel-counter { font-size: 0.8rem; color: var(--muted); margin-bottom: 16px; }
     .sel-counter strong { color: var(--navy); }
@@ -405,7 +396,7 @@
 
     /* ── Print ─────────────────────────────────────────────────────── */
     @media print {
-      #topbar, .summary-actions, .booking-footer, .modal-overlay { display: none !important; }
+      #topbar, .summary-actions, .modal-overlay { display: none !important; }
       body { background: white; }
       .summary-header { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .screen { display: flex !important; }
@@ -426,7 +417,7 @@
       .values-grid { grid-template-columns: repeat(3, 1fr); }
       .cards-grid { grid-template-columns: repeat(2, 1fr); }
       .images-grid { grid-template-columns: repeat(3, 1fr); }
-      .summary-header, .summary-body, .summary-actions, .booking-footer { padding-left: 20px; padding-right: 20px; }
+      .summary-header, .summary-body, .summary-actions { padding-left: 20px; padding-right: 20px; }
       .modal-box { height: 95vh; }
     }
   </style>
@@ -601,27 +592,20 @@
       <button class="btn-secondary" id="btn-restart">Start Over</button>
     </div>
   </div>
-  <div class="booking-footer">
-    <a href="https://outlook.office.com/book/AdamMalcolmConsultantIGWealthManagementOnlineBooking@igmfinancial.net/?ismsaljsauthenabled"
-       target="_blank" rel="noopener" class="booking-footer-link">
-      Prefer to book directly? Schedule a meeting with Adam →
-    </a>
-  </div>
 </div>
 
 <!-- ── Booking Modal ────────────────────────────────────────────────── -->
 <div class="modal-overlay" id="modal-booking">
   <div class="modal-box">
     <div class="modal-header">
-      <div class="modal-eyebrow">One more thing…</div>
-      <h3>Would you like to chat with Adam?</h3>
-      <p>Your results are a great starting point for a financial conversation. Book a free call below — or skip to save your PDF.</p>
+      <h3>Do you want to be the richest person in the graveyard?</h3>
+      <p>If the answer is no, let's talk. What you've shared today is the foundation of a plan that helps you secure your family, enjoy your money, and give the rest away. All three. At the same time.</p>
     </div>
     <div class="modal-iframe-wrap">
       <iframe src='https://outlook.office.com/book/AdamMalcolmConsultantIGWealthManagementOnlineBooking@igmfinancial.net/?ismsaljsauthenabled' width='100%' height='100%' scrolling='yes' style='border:0'></iframe>
     </div>
     <div class="modal-footer">
-      <button class="modal-skip" id="btn-modal-skip">No thanks — just save my PDF</button>
+      <button class="modal-skip" id="btn-modal-skip">No thanks — just view my summary</button>
     </div>
   </div>
 </div>
@@ -680,7 +664,6 @@ const IMAGE_COUNT = 18;
 // ── State ─────────────────────────────────────────────────────────────
 let userName = '';
 let currentScreen = 'welcome';
-let hasShownBooking = false;
 
 let selValues = [];
 let selMoney = [];
@@ -942,24 +925,16 @@ document.getElementById('btn-back-3').addEventListener('click', () => showScreen
 document.getElementById('btn-back-4').addEventListener('click', () => showScreen('screen-3'));
 document.getElementById('btn-back-summary').addEventListener('click', () => showScreen('screen-4'));
 
-// ── Print with booking modal ──────────────────────────────────────────
-document.getElementById('btn-print').addEventListener('click', () => {
-  if (!hasShownBooking) {
-    hasShownBooking = true;
-    document.getElementById('modal-booking').classList.add('open');
-  } else {
-    window.print();
-  }
-});
+// ── Print ─────────────────────────────────────────────────────────────
+document.getElementById('btn-print').addEventListener('click', () => window.print());
 
 document.getElementById('btn-modal-skip').addEventListener('click', () => {
   document.getElementById('modal-booking').classList.remove('open');
-  window.print();
 });
 
 // ── Restart ───────────────────────────────────────────────────────────
 document.getElementById('btn-restart').addEventListener('click', () => {
-  userName = ''; hasShownBooking = false;
+  userName = '';
   selValues = []; selMoney = []; selPhilanthropy = []; selImages = [];
   document.getElementById('name-input').value = '';
   document.getElementById('btn-start').disabled = true;
@@ -1035,6 +1010,7 @@ function buildSummary() {
   }).filter(Boolean).join('');
 
   showScreen('screen-summary');
+  document.getElementById('modal-booking').classList.add('open');
 }
 </script>
 </body>
