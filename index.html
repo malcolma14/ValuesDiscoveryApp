@@ -545,9 +545,10 @@
       margin-bottom: 10px;
     }
     .summary-img {
-      width: 120px;
-      height: 80px;
+      width: 160px;
+      height: 107px;
       object-fit: cover;
+      object-position: center;
       border-radius: 6px;
       border: 2px solid var(--navy);
     }
@@ -966,7 +967,7 @@ function renderImages() {
     tile.className = 'img-tile';
     tile.dataset.imgIndex = n;
     tile.innerHTML =
-      '<img src="' + n + '.jpg" alt="" loading="lazy" />' +
+      '<img src="public/images/' + n + '.jpg" alt="" loading="lazy" />' +
       '<div class="img-overlay"></div>' +
       '<div class="img-badge"></div>' +
       '<div class="img-check"></div>';
@@ -1007,7 +1008,7 @@ function renderReflectionImages() {
     const row = document.createElement('div');
     row.className = 'reflection-img-row';
     row.innerHTML =
-      '<img class="reflection-img-thumb" src="' + n + '.jpg" alt="" />' +
+      '<img class="reflection-img-thumb" src="public/images/' + n + '.jpg" alt="" />' +
       '<div style="flex:1">' +
         '<div class="reflection-label" style="margin-top:0">Why did you choose this picture?</div>' +
         '<textarea class="reflection-textarea" id="ref-4-img-' + n + '" placeholder="Share your thoughts…"></textarea>' +
@@ -1180,7 +1181,7 @@ function buildSummary() {
   // Legacy images
   const siEl = document.getElementById('summary-images');
   siEl.innerHTML = selImages.map(n =>
-    '<img class="summary-img" src="' + n + '.jpg" alt="" />'
+    '<img class="summary-img" src="public/images/' + n + '.jpg" alt="" />'
   ).join('');
 
   // Reflection helper: renders Q+A pairs, skipping empty answers
@@ -1220,7 +1221,7 @@ function buildSummary() {
       const val = ta ? ta.value.trim() : '';
       if (!val) return '';
       return '<div class="summary-reflection-img-row">' +
-        '<img class="summary-reflection-img" src="' + n + '.jpg" alt="" />' +
+        '<img class="summary-reflection-img" src="public/images/' + n + '.jpg" alt="" />' +
         '<div class="summary-reflection-a" style="flex:1">' + escapeHtml(val) + '</div>' +
         '</div>';
     })
