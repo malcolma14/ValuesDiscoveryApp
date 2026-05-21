@@ -164,6 +164,35 @@
     .btn-primary:hover:not(:disabled) { background: #002d8a; }
     .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
 
+    .btn-secondary {
+      background: var(--white);
+      color: var(--navy);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .btn-secondary:hover { border-color: var(--navy); background: #f0f4fc; }
+
+    .btn-reflection {
+      background: #EBF6FD;
+      color: var(--navy);
+      border: 1.5px solid var(--lb);
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition);
+      white-space: nowrap;
+    }
+    .btn-reflection:hover { background: #d8eef9; border-color: var(--blue); }
+
     /* ── Module layout ─────────────────────────────────────────────── */
     .module-header {
       background: var(--white);
@@ -203,13 +232,34 @@
       border-top: 1px solid var(--border);
       padding: 16px 40px;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       gap: 16px;
     }
-    .module-footer textarea {
-      flex: 1;
-      min-height: 56px;
-      max-height: 120px;
+    .module-footer .btn-primary { width: auto; min-width: 140px; }
+
+    /* ── Reflection panels ─────────────────────────────────────────── */
+    .reflection-panel {
+      background: #F0F6FC;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 40px;
+      display: none;
+    }
+    .reflection-panel.open { display: block; }
+    .reflection-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 6px;
+      margin-top: 18px;
+    }
+    .reflection-label:first-child { margin-top: 0; }
+    .reflection-textarea {
+      width: 100%;
+      min-height: 72px;
+      max-height: 200px;
       padding: 10px 14px;
       border: 1.5px solid var(--border);
       border-radius: 8px;
@@ -219,10 +269,39 @@
       resize: vertical;
       outline: none;
       transition: border-color var(--transition);
+      background: white;
     }
-    .module-footer textarea:focus { border-color: var(--blue); }
-    .module-footer textarea::placeholder { color: #bbb; }
-    .module-footer .btn-primary { width: auto; min-width: 140px; }
+    .reflection-textarea:focus { border-color: var(--blue); }
+    .reflection-deeper {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px dashed var(--border);
+    }
+    .reflection-deeper-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 14px;
+    }
+    .reflection-img-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-top: 18px;
+    }
+    .reflection-img-row:first-child { margin-top: 0; }
+    .reflection-img-thumb {
+      width: 140px;
+      flex-shrink: 0;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 6px;
+      border: 2px solid var(--navy);
+    }
+    .reflection-img-row .reflection-textarea { flex: 1; }
 
     /* ── Values grid (module 1) ────────────────────────────────────── */
     .values-grid {
@@ -475,36 +554,64 @@
       border-radius: 6px;
       border: 2px solid var(--navy);
     }
-    .summary-note {
-      background: var(--cream);
+
+    /* ── Summary reflections ───────────────────────────────────────── */
+    .summary-reflection { margin-top: 14px; }
+    .summary-reflection-q {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+      margin-top: 12px;
+    }
+    .summary-reflection-q:first-child { margin-top: 0; }
+    .summary-reflection-a {
+      background: white;
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       font-size: 0.875rem;
       color: var(--ink);
       line-height: 1.6;
       white-space: pre-wrap;
-      min-height: 44px;
     }
-    .summary-note.empty { color: var(--muted); font-style: italic; }
+    .summary-reflection-img-row {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 12px;
+    }
+    .summary-reflection-img-row:first-child { margin-top: 0; }
+    .summary-reflection-img {
+      width: 120px;
+      flex-shrink: 0;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 6px;
+      border: 2px solid var(--navy);
+    }
+
     .summary-actions {
-      padding: 0 48px 48px;
+      padding: 0 48px 32px;
       display: flex;
       gap: 12px;
     }
-    .btn-secondary {
-      background: var(--white);
-      color: var(--navy);
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 28px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: border-color var(--transition), background var(--transition);
+
+    /* ── Booking section ───────────────────────────────────────────── */
+    .booking-section {
+      padding: 32px 48px 48px;
+      border-top: 1px solid var(--border);
     }
-    .btn-secondary:hover { border-color: var(--navy); background: #f0f4fc; }
+    .booking-section p {
+      font-size: 0.95rem;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .booking-actions { display: flex; gap: 12px; }
+    .booking-link p { margin-bottom: 14px; }
 
     /* ── Selection counter ─────────────────────────────────────────── */
     .sel-counter {
@@ -516,7 +623,7 @@
 
     /* ── Print ─────────────────────────────────────────────────────── */
     @media print {
-      #topbar, .summary-actions { display: none !important; }
+      #topbar, .summary-actions, .booking-section { display: none !important; }
       body { background: white; }
       .summary-header { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .screen { display: flex !important; }
@@ -535,9 +642,11 @@
     }
     @media (max-width: 700px) {
       .module-header, .module-body, .module-footer { padding-left: 20px; padding-right: 20px; }
+      .reflection-panel { padding-left: 20px; padding-right: 20px; }
       .values-grid { grid-template-columns: repeat(3, 1fr); }
       .cards-grid { grid-template-columns: repeat(2, 1fr); }
       .images-grid { grid-template-columns: repeat(3, 1fr); }
+      .summary-header, .summary-body, .summary-actions, .booking-section { padding-left: 20px; padding-right: 20px; }
     }
   </style>
 </head>
@@ -578,8 +687,21 @@
     <div class="sel-counter">Selected: <strong id="m1-count">0</strong> / 3</div>
     <div class="values-grid" id="grid-values"></div>
   </div>
+  <div class="reflection-panel" id="reflection-1">
+    <div class="reflection-label">What values did you choose and why?</div>
+    <textarea class="reflection-textarea" id="ref-1-why" placeholder="Share your thoughts…"></textarea>
+    <div class="reflection-label">What life or family experiences led you to choose those values?</div>
+    <textarea class="reflection-textarea" id="ref-1-experiences" placeholder="Share your thoughts…"></textarea>
+    <div class="reflection-deeper">
+      <div class="reflection-deeper-label">Deeper Reflection</div>
+      <div class="reflection-label">Is there a time you remember where someone broke this value? How did you react?</div>
+      <textarea class="reflection-textarea" id="ref-1-broken" placeholder="Share your thoughts…"></textarea>
+      <div class="reflection-label">Does your wealth plan serve these values? If so, how? If not, in what way is it not serving your values currently?</div>
+      <textarea class="reflection-textarea" id="ref-1-plan" placeholder="Share your thoughts…"></textarea>
+    </div>
+  </div>
   <div class="module-footer">
-    <textarea id="notes-1" placeholder="Notes — type as the client speaks…"></textarea>
+    <button class="btn-reflection" id="btn-reflect-1">Add Reflection +</button>
     <button class="btn-primary" id="btn-next-1" disabled>Continue</button>
   </div>
 </div>
@@ -595,8 +717,14 @@
     <div class="sel-counter">Selected: <strong id="m2-count">0</strong> / 2</div>
     <div class="cards-grid" id="grid-money"></div>
   </div>
+  <div class="reflection-panel" id="reflection-2">
+    <div class="reflection-label">Where/when did you first hear this money message, and what role has it played in your life?</div>
+    <textarea class="reflection-textarea" id="ref-2-origin" placeholder="Share your thoughts…"></textarea>
+    <div class="reflection-label">What money message would you like to live your life <em>now?</em></div>
+    <textarea class="reflection-textarea" id="ref-2-now" placeholder="Share your thoughts…"></textarea>
+  </div>
   <div class="module-footer">
-    <textarea id="notes-2" placeholder="Notes — type as the client speaks…"></textarea>
+    <button class="btn-reflection" id="btn-reflect-2">Add Reflection +</button>
     <button class="btn-primary" id="btn-next-2" disabled>Continue</button>
   </div>
 </div>
@@ -612,8 +740,14 @@
     <div class="sel-counter">Selected: <strong id="m3-count">0</strong> / 1</div>
     <div class="cards-grid three-col" id="grid-philanthropy"></div>
   </div>
+  <div class="reflection-panel" id="reflection-3">
+    <div class="reflection-label">Why does this principle resonate with you?</div>
+    <textarea class="reflection-textarea" id="ref-3-why" placeholder="Share your thoughts…"></textarea>
+    <div class="reflection-label">To what extent do you live by it?</div>
+    <textarea class="reflection-textarea" id="ref-3-extent" placeholder="Share your thoughts…"></textarea>
+  </div>
   <div class="module-footer">
-    <textarea id="notes-3" placeholder="Notes — type as the client speaks…"></textarea>
+    <button class="btn-reflection" id="btn-reflect-3">Add Reflection +</button>
     <button class="btn-primary" id="btn-next-3" disabled>Continue</button>
   </div>
 </div>
@@ -629,8 +763,11 @@
     <div class="sel-counter">Selected: <strong id="m4-count">0</strong> / 3</div>
     <div class="images-grid" id="grid-images"></div>
   </div>
+  <div class="reflection-panel" id="reflection-4">
+    <div id="reflection-4-images"></div>
+  </div>
   <div class="module-footer">
-    <textarea id="notes-4" placeholder="Notes — type as the client speaks…"></textarea>
+    <button class="btn-reflection" id="btn-reflect-4">Add Reflection +</button>
     <button class="btn-primary" id="btn-next-4" disabled>View Summary</button>
   </div>
 </div>
@@ -646,27 +783,45 @@
     <div class="summary-section">
       <h3>Motivational Values</h3>
       <div class="summary-chips" id="summary-values"></div>
-      <div class="summary-note" id="summary-notes-1"></div>
+      <div class="summary-reflection" id="summary-reflection-1"></div>
     </div>
     <div class="summary-section">
       <h3>Money Messages</h3>
       <div class="summary-cards" id="summary-money"></div>
-      <div class="summary-note" id="summary-notes-2"></div>
+      <div class="summary-reflection" id="summary-reflection-2"></div>
     </div>
     <div class="summary-section">
       <h3>Principle of Philanthropy</h3>
       <div class="summary-cards" id="summary-philanthropy"></div>
-      <div class="summary-note" id="summary-notes-3"></div>
+      <div class="summary-reflection" id="summary-reflection-3"></div>
     </div>
     <div class="summary-section">
       <h3>Legacy Images</h3>
       <div class="summary-images" id="summary-images"></div>
-      <div class="summary-note" id="summary-notes-4"></div>
+      <div class="summary-reflection" id="summary-reflection-4"></div>
     </div>
   </div>
   <div class="summary-actions">
     <button class="btn-primary" id="btn-print" style="width:auto;min-width:180px;">Print / Save as PDF</button>
     <button class="btn-secondary" id="btn-restart">Start New Session</button>
+  </div>
+  <div class="booking-section" id="booking-section">
+    <div id="booking-prompt">
+      <p>Would you like to schedule a follow-up conversation?</p>
+      <div class="booking-actions">
+        <button class="btn-primary" id="btn-book-yes" style="width:auto;min-width:180px;">Yes — Book a Meeting</button>
+        <button class="btn-secondary" id="btn-book-no">No thanks</button>
+      </div>
+    </div>
+    <div id="booking-link" style="display:none;">
+      <p>Use the link below to find a time that works:</p>
+      <a href="https://outlook.office.com/book/AdamMalcolmConsultantIGWealthManagementOnlineBooking@igmfinancial.net/?ismsaljsauthenabled"
+         target="_blank" rel="noopener"
+         class="btn-primary"
+         style="display:inline-block;width:auto;min-width:220px;text-decoration:none;text-align:center;">
+        Schedule a Meeting →
+      </a>
+    </div>
   </div>
 </div>
 
@@ -827,6 +982,47 @@ function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+// ── Reflection panel toggle ───────────────────────────────────────────
+function toggleReflection(moduleNum) {
+  const panel = document.getElementById('reflection-' + moduleNum);
+  const btn = document.getElementById('btn-reflect-' + moduleNum);
+  const open = panel.classList.toggle('open');
+  btn.textContent = open ? 'Close Reflection −' : 'Add Reflection +';
+}
+
+document.getElementById('btn-reflect-1').addEventListener('click', () => toggleReflection(1));
+document.getElementById('btn-reflect-2').addEventListener('click', () => toggleReflection(2));
+document.getElementById('btn-reflect-3').addEventListener('click', () => toggleReflection(3));
+document.getElementById('btn-reflect-4').addEventListener('click', () => toggleReflection(4));
+
+// ── Module 4 dynamic reflection rows ─────────────────────────────────
+function renderReflectionImages() {
+  const container = document.getElementById('reflection-4-images');
+  const saved = {};
+  container.querySelectorAll('.reflection-textarea').forEach(ta => {
+    saved[ta.id] = ta.value;
+  });
+  container.innerHTML = '';
+  if (selImages.length === 0) {
+    container.innerHTML = '<p style="font-size:0.875rem;color:var(--muted);font-style:italic;">Select images above to add reflections.</p>';
+    return;
+  }
+  selImages.forEach(n => {
+    const row = document.createElement('div');
+    row.className = 'reflection-img-row';
+    row.innerHTML =
+      '<img class="reflection-img-thumb" src="public/images/' + n + '.jpg" alt="" />' +
+      '<div style="flex:1">' +
+        '<div class="reflection-label" style="margin-top:0">Why did you choose this picture?</div>' +
+        '<textarea class="reflection-textarea" id="ref-4-img-' + n + '" placeholder="Share your thoughts…"></textarea>' +
+      '</div>';
+    container.appendChild(row);
+    if (saved['ref-4-img-' + n]) {
+      document.getElementById('ref-4-img-' + n).value = saved['ref-4-img-' + n];
+    }
+  });
+}
+
 // ── Selection logic ───────────────────────────────────────────────────
 function applySelectionState(gridId, selections, limit, countId) {
   const grid = document.getElementById(gridId);
@@ -854,6 +1050,7 @@ function applyImageSelectionState() {
     if (isSelected) tile.querySelector('.img-badge').textContent = pos + 1;
   });
   document.getElementById('m4-count').textContent = selImages.length;
+  renderReflectionImages();
 }
 
 // ── Event delegation ──────────────────────────────────────────────────
@@ -930,17 +1127,33 @@ document.getElementById('btn-next-4').addEventListener('click', buildSummary);
 
 document.getElementById('btn-print').addEventListener('click', () => window.print());
 
+document.getElementById('btn-book-yes').addEventListener('click', () => {
+  document.getElementById('booking-prompt').style.display = 'none';
+  document.getElementById('booking-link').style.display = '';
+});
+
+document.getElementById('btn-book-no').addEventListener('click', () => {
+  document.getElementById('booking-section').style.display = 'none';
+});
+
 document.getElementById('btn-restart').addEventListener('click', () => {
   clientName = '';
   selValues = []; selMoney = []; selPhilanthropy = []; selImages = [];
   document.getElementById('client-name-input').value = '';
   document.getElementById('btn-start').disabled = true;
   document.getElementById('client-name-display').textContent = '';
-  ['notes-1','notes-2','notes-3','notes-4'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('btn-next-1').disabled = true;
   document.getElementById('btn-next-2').disabled = true;
   document.getElementById('btn-next-3').disabled = true;
   document.getElementById('btn-next-4').disabled = true;
+  // reset reflections
+  document.querySelectorAll('.reflection-textarea').forEach(ta => ta.value = '');
+  document.querySelectorAll('.reflection-panel').forEach(p => p.classList.remove('open'));
+  document.querySelectorAll('[id^="btn-reflect-"]').forEach(b => b.textContent = 'Add Reflection +');
+  // reset booking section
+  document.getElementById('booking-section').style.display = '';
+  document.getElementById('booking-prompt').style.display = '';
+  document.getElementById('booking-link').style.display = 'none';
   showScreen('screen-welcome');
   document.querySelectorAll('.dot').forEach(d => d.classList.remove('done','active'));
 });
@@ -950,36 +1163,74 @@ function buildSummary() {
   document.getElementById('summary-title').innerHTML =
     escapeHtml(clientName) + '\'s Conversation <em>at a Glance</em>';
 
+  // Values chips
   const svEl = document.getElementById('summary-values');
   svEl.innerHTML = selValues.map(v =>
     '<span class="summary-chip">' + escapeHtml(v) + '</span>'
   ).join('');
 
+  // Money messages
   const smEl = document.getElementById('summary-money');
   smEl.innerHTML = selMoney.map(m =>
     '<div class="summary-card-item">' + escapeHtml(m) + '</div>'
   ).join('');
 
+  // Philanthropy
   const spEl = document.getElementById('summary-philanthropy');
   spEl.innerHTML = selPhilanthropy.map(p =>
     '<div class="summary-card-item">' + escapeHtml(p) + '</div>'
   ).join('');
 
+  // Legacy images
   const siEl = document.getElementById('summary-images');
   siEl.innerHTML = selImages.map(n =>
     '<img class="summary-img" src="public/images/' + n + '.jpg" alt="" />'
   ).join('');
 
-  function noteEl(id, targetId) {
-    const val = document.getElementById(id).value.trim();
+  // Reflection helper: renders Q+A pairs, skipping empty answers
+  function renderReflectionBlock(targetId, pairs) {
     const el = document.getElementById(targetId);
-    if (val) { el.textContent = val; el.classList.remove('empty'); }
-    else { el.textContent = 'No notes recorded.'; el.classList.add('empty'); }
+    const rows = pairs
+      .filter(([, val]) => val.trim())
+      .map(([q, val]) =>
+        '<div class="summary-reflection-q">' + escapeHtml(q) + '</div>' +
+        '<div class="summary-reflection-a">' + escapeHtml(val.trim()) + '</div>'
+      ).join('');
+    el.innerHTML = rows;
   }
-  noteEl('notes-1','summary-notes-1');
-  noteEl('notes-2','summary-notes-2');
-  noteEl('notes-3','summary-notes-3');
-  noteEl('notes-4','summary-notes-4');
+
+  renderReflectionBlock('summary-reflection-1', [
+    ['What values did you choose and why?', document.getElementById('ref-1-why').value],
+    ['What life or family experiences led you to choose those values?', document.getElementById('ref-1-experiences').value],
+    ['Is there a time someone broke this value? How did you react?', document.getElementById('ref-1-broken').value],
+    ['Does your wealth plan serve these values?', document.getElementById('ref-1-plan').value],
+  ]);
+
+  renderReflectionBlock('summary-reflection-2', [
+    ['Where/when did you first hear this money message?', document.getElementById('ref-2-origin').value],
+    ['What money message would you like to live by now?', document.getElementById('ref-2-now').value],
+  ]);
+
+  renderReflectionBlock('summary-reflection-3', [
+    ['Why does this principle resonate with you?', document.getElementById('ref-3-why').value],
+    ['To what extent do you live by it?', document.getElementById('ref-3-extent').value],
+  ]);
+
+  // Module 4: image + answer rows
+  const sr4 = document.getElementById('summary-reflection-4');
+  const imgRows = selImages
+    .map(n => {
+      const ta = document.getElementById('ref-4-img-' + n);
+      const val = ta ? ta.value.trim() : '';
+      if (!val) return '';
+      return '<div class="summary-reflection-img-row">' +
+        '<img class="summary-reflection-img" src="public/images/' + n + '.jpg" alt="" />' +
+        '<div class="summary-reflection-a" style="flex:1">' + escapeHtml(val) + '</div>' +
+        '</div>';
+    })
+    .filter(Boolean)
+    .join('');
+  sr4.innerHTML = imgRows;
 
   showScreen('screen-summary');
 }
